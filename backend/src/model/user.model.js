@@ -181,9 +181,7 @@ class User {
         var connection;
         try {
             connection = await oracledb.getConnection(dbConn);
-            const query = `select id,
-            email,
-            password
+            const query = `select id, email, password, name, to_char(photo) photo
             from demo_ords.demo_user where email = :1`;
             await connection.execute(query, [email], function (err, res) {
                 if (err) {
