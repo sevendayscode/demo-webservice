@@ -109,8 +109,9 @@ class Emp {
     static update = async (empno, emp, result) => {
         var connection;
         try {
+            let dateEmp = emp.hiredate == undefined ? '02-JUN-21' : emp.hiredate;
+            console.log(dateEmp)
             connection = await oracledb.getConnection(dbConn);
-
             let query = `
             update demo_ords.emp set 
             ename = :ename,
@@ -126,7 +127,7 @@ class Emp {
                 [emp.ename,
                 emp.job,
                 emp.mgr,
-                emp.hiredate,
+                dateEmp,
                 emp.sal,
                 emp.comm,
                 emp.deptno,
